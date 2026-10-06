@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-wrapper">
+            <nav class="navbar">
+                <div class="navbar-brand">MyApp</div>
+                <div class="navbar-user">
+                    <span class="username">Hello, {{ username }}! 👋</span>
+                    <a href="/logout" class="logout-btn">Logout</a>
+                </div>
+            </nav>
+
+            <main class="dashboard-content">
+                <div class="welcome-section">
+                    <h1>Welcome to Your Dashboard</h1>
+                    <p>You have successfully logged in!</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h2>Analytics</h2>
+                        <p>View your activity and statistics</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">⚙️</div>
+                        <h2>Settings</h2>
+                        <p>Manage your account preferences</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">📧</div>
+                        <h2>Messages</h2>
+                        <p>Check your notifications and messages</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">👤</div>
+                        <h2>Profile</h2>
+                        <p>Update your profile information</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h2>Session Information</h2>
+                    <p><strong>Current User:</strong> {{ username }}</p>
+                    <p><strong>Login Time:</strong> <span id="loginTime"></span></p>
+                    <p><strong>Status:</strong> <span class="status-badge">Active</span></p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Display current time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('loginTime').textContent = now.toLocaleString();
+        }
+        updateTime();
+
+        // Add click handlers to cards (optional)
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'translateY(-5px)';
+                setTimeout(() => {
+                    card.style.transform = 'translateY(0)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
